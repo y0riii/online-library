@@ -3,30 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Rubik:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/book-details.css">
     <title>Book Details</title>
 </head>
 <body>
     <main class="main">
         <div class="book-info">
-            <div class="book-info__img">
+            <div class="left-column">
                 <!-- add book img -->
+                <img src="images/deep-work.jpg" alt="deep-work" class="book-img">
+
+                <div class="book-available">
+                    <span class="book-available__state">Available</span>
+                </div>
+
+                <div class="buttons">
+                    <button class="button buttons__edit">Borrow the Book</button>
+                </div>
             </div>
             <div class="book-details">
-                <h2 class="book-details__book-title">Book Title</h2>
-                <p class="book-details__about">Some details about the Book</p>
-                <div class="book-details__genre">
+                <h1 class="book-details__book-title">Deep Work</h1>
+                <span class="book-details__author">Cal Newport</span>
+                <p class="book-details__about">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Cras pulvinar mattis nunc sed blandit libero volutpat. Sapien pellentesque habitant morbi tristique senectus et netus et malesuada. Ut venenatis tellus in metus vulputate eu. Varius morbi enim nunc faucibus a. Platea dictumst quisque sagittis purus sit amet volutpat. Adipiscing commodo elit at imperdiet. Tempor id eu nisl nunc mi ipsum faucibus vitae. Nunc sed blandit libero volutpat sed cras ornare. Rhoncus aenean vel elit scelerisque. Tempus quam pellentesque nec nam aliquam sem et. Fringilla ut morbi tincidunt augue interdum. Dui vivamus arcu felis bibendum. Mattis pellentesque id nibh tortor id. In nisl nisi scelerisque eu ultrices vitae. Dignissim enim sit amet venenatis urna cursus. Amet venenatis urna cursus eget. Cursus turpis massa tincidunt dui ut ornare lectus sit amet.</p>
+                <div class="book-details__genre-container">
+                    <span class="genre-heading">Genres</span>
                     <!-- Add spans for all the genres of the book -->
+                    <span class="book-details__genre">Self Help</span>
+                    <span class="book-details__genre">Self Development</span>
                 </div>
-                <div class="author">
-                    <h2 class="author__name">Author Name</h2>
-                    <p class="author__about">About the Author</p>
+                <div class="about-author">
+                    <h3 class="about-author__heading">About The Author</h3>
+                    <span class="about-author__name">Cal Newport</span>
+                    <p class="about-author__about">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 </div>
-            </div>
-            <div class="book-available">
-                <span class="book-available__state">Available</span>
-            </div>
-            <div class="buttons">
-                <button class="buttons__borrow">Borrow the Book</button>
+                
             </div>
         </div>
     </main>
