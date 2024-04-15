@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Add New Book</title>
+</head>
+<body>
+  <div class="header">
+    <img src="./images/logo.png">
+    <h2 class="header-tag">Home</h2>
+    <!-- if the user is not an Admin -->
+    <h2 class="header-tag">My Books</h2>
+    <!-- if the user is an admin -->
+    <h2 class="header-tag">Home</h2>
+    <h2 class="header-tag">About Us</h2>
+    <a href="/login.html" class="header-tag logout">Logout</a>
+</div>
+<hr>
+    <h1>Add Book Form</h1>
+  <form>
+    <div><label for="name">Book Title: </label><input class="title-input" id="title" type="text" required placeholder="Enter the book title"/></div><br>
+    <div><label for="author">Author Name: </label><input class="author-input" id="author" type="text" required placeholder="Enter the author name"/></div><br>
+    <div>
+      <label for="category">Category: </label>
+      <select required id="category" class="category">
+           <option value="1">Self Improvement</option>
+           <option value="2">Fiction</option>
+           <option value="3">Romance</option>
+           <option value="4">Scientific</option>
+           <option value="5">Comedy</option>
+           <option value="6">Drama</option>
+      </select>
+    </div>
+    <br>
+    <div>
+      <label for="des">Describtion: </label><textarea class="des" id="des" placeholder="Enter the book's description" required minlength="20" maxlength="500"></textarea>
+    </div>
+    <br>
+    <label for="cover"></label>Cover image: <input type="file" id="cover" class="cover" required>
+    <hr>
+    <input type="submit">
+  </form>
+</body>
+</html>
