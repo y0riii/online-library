@@ -11,6 +11,12 @@
 html {
     font-family: 'lato', 'sans-serif';
     font-weight: 400;
+    color: #c6c6c7;
+}
+
+body {
+    background-image: url("../images/background_main.jpg");
+    background-size: cover;
 }
 
 .main {
@@ -23,7 +29,7 @@ html {
     display: flex;
 }
 
-.left-column {
+.book-info__img {
     width: 25%;
     display: flex;
     flex-direction: column;
@@ -32,7 +38,7 @@ html {
 }
 
 .book-img {
-    box-shadow: -1.5px 3px 12px #333;
+    box-shadow: -1.5px 3px 12px #101335;
     height: 30rem;
     margin-bottom: 2rem;
 }
@@ -45,12 +51,12 @@ html {
 }
 
 .button {
-    box-shadow: -1px 2px 5px #444;   
+    box-shadow: -1px 2px 5px #073009;   
     border: none;
     border-radius: 25rem;
     width: 75%;
     height: 4rem;
-    background-color: rgb(42, 108, 42);
+    background-color: rgb(3, 78, 19);
     margin: 1rem;
     color: #eee;
     font-size: 1.4rem;
@@ -59,7 +65,7 @@ html {
 }
 
 .button:hover {
-    background-color: rgb(71, 133, 71);
+    background-color: rgb(5, 91, 5);
 }
 
 .book-available {
@@ -103,14 +109,14 @@ html {
 
 .genre-heading {
     font-size: 1.35rem;
-    color: #828080;
+    color: #808082;
     font-weight: bold;
     margin-right: 1.5rem;
 }
 
 .book-details__genre {
     padding: .5rem 1rem;
-    background-color: rgb(193, 184, 184);
+    background-color: rgb(2, 2, 36);  
     border-radius: .3rem;
     margin-right: 1rem;
     letter-spacing: .05rem;
@@ -118,7 +124,7 @@ html {
 }
 
 .book-details__genre:hover {
-    background-color: rgb(212, 208, 208);
+    background-color: rgb(10, 8, 74);
 }
 
 .about-author {
