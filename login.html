@@ -4,14 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="./styles/login.css">
+    <script src="./js/login.js" defer></script>
 </head>
 <body>
-    <h1>Login Form</h1>
-    <form class="form">
-        <label for="email">Email: </label><input type="email" class="email"  id="email" placeholder="Enter your email" required>
-        <label for="password">Password: </label><input type="password" id="password" class="password" placeholder="Enter your password" required>
-        <button type="submit">Login</button>
-        <a class="link" href="/register.html">To register page</a>
+    <div class="bg">
+        <img src="./images/shelves.jpg" alt="bg" class="bg-image">
+        <div class="black"></div>
+    </div>
+    <form>
+        <h1>Login Form</h1>
+        <div class="inputBox">
+            <div class="inputText">Email</div>
+            <input type="email" class="input email" name="email" required>
+        </div>
+        <div class="inputBox">
+            <div class="inputText">Password</div>
+            <input type="password" class="input password" name="password" required>
+        </div>
+        <div class="btns-cont">
+            <button type="submit">Login</button>
+            <a class="link" href="./register.html">Create account</a>
+        </div>
     </form>
 </body>
 </html>

@@ -4,17 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+    <link rel="stylesheet" href="./styles/register.css">
+    <script src="./js/register.js" defer></script>
 </head>
 <body>
-    <h1>Register Form</h1>
-    <form class="form">
-        <input type="text" class="username" placeholder="Enter your username" required>
-        <input type="email" class="email" placeholder="Enter your email" required>
-        <input type="password" class="password" placeholder="Enter your password" required>
-        <input type="password" class="rpassword" placeholder="Repeat your password" required>
-        <input type="checkbox" class="checkbox" required>Admin</button>
-        <button type="submit">Login</button>
-        <a class="link" href="/login.html">To login page</a>
+    <div class="bg">
+        <img src="./images/shelves.jpg" alt="bg" class="bg-image">
+        <div class="black"></div>
+    </div>
+    <form>
+        <h1>Register Form</h1>
+        <div class="inputBox">
+            <div class="inputText">Username</div>
+            <input type="text" class="input username" name="username" required>
+        </div>
+        <div class="inputBox">
+            <div class="inputText">Email</div>
+            <input type="email" class="input email" name="email" required>
+        </div>
+        <div class="inputBox">
+            <div class="inputText">Password</div>
+            <input type="password" class="input password" name="password" required>
+        </div>
+        <div class="inputBox">
+            <div class="inputText">Repeat password</div>
+            <input type="password" class="input rPassword" name="rPassword" required>
+        </div>
+        <div class="inputBox">
+            <label for="admin" class="label">
+                <input type="checkbox" id="admin" name="admin"> Admin
+            </label>
+        </div>
+        <div class="btns-cont">
+            <button type="submit">Register</button>
+            <a class="link" href="./login.html">Go to login</a>
+        </div>
     </form>
 </body>
 </html>

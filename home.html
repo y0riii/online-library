@@ -4,23 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <link rel="stylesheet" href="./styles/home.css">
+    <script src="./js/home.js" defer></script>
 </head>
 <body>
     <div class="header">
-        <img src="./images/logo.png">
-        <h2 class="header-tag">Home</h2>
+        <img src="./images/logo.png" class="logo">
+        <a class="header-tag">Home</a>
         <!-- if the user is not an Admin -->
-        <h2 class="header-tag">My Books</h2>
+        <a class="header-tag my-books">My Books</a>
         <!-- if the user is an admin -->
-        <h2 class="header-tag">Home</h2>
-        <h2 class="header-tag">About Us</h2>
-        <a href="/login.html" class="header-tag logout">Logout</a>
+        <a class="header-tag add-book">Add Book</a>
+        <a class="header-tag">About Us</a>
+        <div class="logout-cont">
+            <p class="username">Hello, </p>
+            <p class="logout">Logout</p>
+        </div>
     </div>
-    <hr>
-    <form class="search-cont">
+    <div class="search-cont">
         <input type="text" class="search-input" placeholder="Enter the book's title or author">
         <select class="search-category">
-            <!-- Add the categories after you get the entire project  -->
+            <option value="all">All</option>
             <option value="self-improvement">Self-improvement</option>
             <option value="fiction">Fiction</option>
             <option value="romance">Romance</option>
@@ -28,23 +32,14 @@
             <option value="comedy">Comedy</option>
             <option value="drama">Drama</option>
         </select>
+        <div class="checkbox-cont">
+            <input class="ava" type="checkbox"></input>
+            <p>Show Available Only</p>
+        </div>
         <button type="submit" class="search-btn">Search</button>
-    </form>
-    <hr>
-    <div class="books-cont">
-        <div class="book">
-            <img src="./images/can't hurt me.PNG" alt="Cover">
-            <h2 class="title">Can't hurt me</h2>
-            <h2 class="author">David Goggins</h2>
-            <h2 class="state">Available</h2>
-        </div>
-        <hr>
-        <div class="book">
-            <img src="./images/deep-work.jpg" alt="Cover">
-            <h2 class="title">Deep work</h2>
-            <h2 class="author">Cal Newport</h2>
-            <h2 class="state">Available</h2>
-        </div>
+    </div>
+    <div class="cont">
+        <div class="books-cont"></div>
     </div>
 </body>
 </html>
