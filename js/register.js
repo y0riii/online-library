@@ -1,10 +1,18 @@
 var inputs = document.querySelectorAll(".input")
 const form = document.querySelector("form")
-const username = document.querySelector(".username")
+const usernameInput = document.querySelector(".usernameInput")
 const email = document.querySelector(".email")
 const admin = document.querySelector("#admin")
 const password = document.querySelector(".password")
 const rPassword = document.querySelector(".rPassword")
+const username = document.querySelector(".username")
+const logout = document.querySelector(".logout")
+const myBooks = document.querySelector(".my-books")
+const addBook = document.querySelector(".add-book")
+let isAdmin = localStorage.getItem("role")
+if(isAdmin == "on") isAdmin = true;
+else isAdmin = false;
+
 inputs.forEach(input => {
     input.addEventListener("focus", () => {
         input.parentElement.classList.add("focus")
@@ -20,7 +28,7 @@ form.addEventListener("submit", (e) => {
         email: email.value,
         password: password.value,
     }
-    if(username.value.length < 4) {
+    if(usernameInput.value.length < 4) {
         alert("Username length must be at least 4 characters.");
         return;
     }
@@ -33,21 +41,29 @@ form.addEventListener("submit", (e) => {
         return;
     }
     if(password.value == rPassword.value) {
-        let found = sessionStorage.getItem(email.value)
+        let found = localStorage.getItem(email.value)
         if(found == "email") {
             alert("Email is already registered.")
             return;
         }
-        found = sessionStorage.getItem(username.value)
+        found = localStorage.getItem(usernameInput.value)
         if(found == "username") {
             alert("Username is already taken.")
             return;
         }
-        sessionStorage.setItem(JSON.stringify(user), username.value)
-        sessionStorage.setItem(email.value, "email")
-        sessionStorage.setItem(username.value, "username")
-        sessionStorage.setItem(email.value + "is-admin", admin.value)
+        let ad;
+        if(admin.checked) ad = "on"
+        else ad = "off"
+        localStorage.setItem(JSON.stringify(user), usernameInput.value)
+        localStorage.setItem(email.value, "email")
+        localStorage.setItem(usernameInput.value, "username")
+        localStorage.setItem(user.email + "is-admin", ad)
         alert("User has been registered successfully.")
-        window.location.reload()
+        window.location.href = "./login.html"
     } else alert("passwords don't match.")
+})
+
+document.addEventListener("DOMContentLoaded", () => {
+    if(isAdmin) myBooks.style.display = "none";
+    else addBook.style.display = "none"
 })

@@ -1,0 +1,141 @@
+* {
+  margin:0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+body {
+  text-align: center;
+  background-image: url("../images/background_main.jpg");
+  background-size: cover;
+}
+.header {
+  background: #0f005c;
+  width:100%;
+  height:10vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color:#fff;
+}
+.header a {
+  transform: translate(-50px, 0);
+}
+.logo {
+  height:10vh;
+  transform: translate(-30px, 0);
+}
+.header a {
+  padding:5px;
+  cursor: pointer;
+  transition: .5s;
+  text-decoration: none;
+  color: #fff;
+  font-size: 19px;
+}
+.header a:hover {
+  scale:1.1;
+  color: orange;
+  background: #ffffff83
+}
+.logout-cont p {
+  font-size: 18px !important;
+  padding:0;
+  margin-top: 0 !important;
+}
+.logout {
+  text-decoration: underline;
+  cursor: pointer;
+  transition: .5s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.logout:hover {
+  scale:1.1;
+  color: red;
+}
+.active {
+  scale: 1.1 !important;
+  color: red !important;
+}
+p {
+  margin-top: 100px;
+  padding: 2px;
+  font-size: 47px;
+  font-weight: bold;
+  color: white;
+}
+.form {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-flow: row;
+  padding: 50px;
+  opacity: 0.9;
+}
+.input {
+  display: block;
+  color: #eee;
+  width: 300px;
+  height: 40px;
+  background-color: black;
+  opacity: 0.9;
+}
+.input[type="text"]:focus {
+  border: 2px solid rgb(45 76 45);
+}
+input[type="file"] {
+  color: white;
+  padding-left: 38%;
+  cursor: pointer;
+}
+.select {
+  color: #eee;
+}
+.add {
+  background-color: black;
+  text-align: center;
+  font-size: 24px;
+  width: 150px;
+  height: 50px;
+  color: #eeee;
+  border: none;
+  transition: all 0.2s ease-in-out;
+}
+.add:hover {
+  background-color: rgb(36, 36, 36);
+}
+#book,
+#des {
+  display: block;
+  background-color: black;
+  color: #eee;
+  width: 300px;
+}
+#des {
+  height: 50px;
+}
+#book {
+  height: 35px;
+}
+
+.photo {
+  display: flex;
+  flex-flow: column;
+  background-color: black;
+  width: 410px;
+  height: 463px;
+  cursor: pointer;
+  opacity: 0.4;
+}
+.photo p {
+  font-size: 20px;
+  padding-top: 25%;
+}
+@media (max-width: 600px) {
+  p {
+    font-size: 30px;
+  }
+  .form {
+    flex-wrap: wrap;
+  }
+}

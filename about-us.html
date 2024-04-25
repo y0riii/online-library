@@ -2,42 +2,94 @@
 <head>
     <meta charset="UTF-8">
  <title>About Us</title>
+ <link rel="stylesheet" href="./styles/about-us.css">
+ <script src="./js/about-us.js" defer></script>
     </head>
 <body>
     <div class="header">
-        <img src="./images/logo.png">
-        <h2 class="header-tag">Home</h2>
+        <img src="./images/logo.png" class="logo">
+        <a class="header-tag" href="./home.html">Home</a>
         <!-- if the user is not an Admin -->
-        <h2 class="header-tag">My Books</h2>
+        <a class="header-tag my-books" href="./my-books.html">My Books</a>
         <!-- if the user is an admin -->
-        <h2 class="header-tag">Home</h2>
-        <h2 class="header-tag">About Us</h2>
-        <a href="/login.html" class="header-tag logout">Logout</a>
+        <a class="header-tag add-book" href="./add-new-book.html">Add Book</a>
+        <a class="header-tag active" href="./about-us.html">About Us</a>
+        <div class="logout-cont">
+            <p class="username">Hello, </p>
+            <p class="logout">Logout</p>
+        </div>
     </div>
-    <hr>
-     <header>
-            <h1>About Us - Digital Library</h1>
-        </header>
-        
-            <h2>Our Mission</h2>
-            <p>Our mission is to provide unlimited access to a wide range of content. We aim to make it easy for all people to read and gain knowledge with least effort</p>
-        <hr>
-            <h2>Our Team</h2>
-            <p>We are a dedicated team of librarians, developers, and enthusiasts passionate about books and technology. Together, we strive to create an innovative and user-friendly online library experience.</p>
-            <ul>
-                <li>Suhaila Sayed - Chief Librarian</li>
-                <li>Mohamed Mostafa - Head of Technology</li>
-                <li>Malak Mohy - Content Curator</li>
-                <li>Youssef Nasser - Library Manager</li>
-                <li>Ahmed Tamer - Technical assistant</li>
-            </ul>
-        <hr>
-            <h2>Company History</h2>
-            <p>Our online library was founded in 20XX with the vision of making knowledge accessible to everyone, regardless of geographical location or socioeconomic status. Over the years, we have grown into a trusted platform for readers of all ages, offering a diverse collection of e-books and audiobooks.</p>
-        <footer>
-            <p>&copy; 20XX Online Library. All rights reserved.</p>
-            <p><a href="/">Digital Library</a></p>
-        </footer>
-    </div>
+    <section class="about-section">
+        <div class="container">
+            <h2 style="margin-top: 20px;">Our Mission</h2>
+            <p style="margin-top: 10px;">Our mission is to provide unlimited access to a wide range of content.We aim to make
+                it easy for all
+                people to read and have knowledge with the least effort.</p>
+
+
+            <h2 style="margin-top: 10px;">Company History</h2>
+            <p style="margin-top: 10px;">Our online library was founded in 2024 with the vision of making literature
+                accessible to everyone,
+                regardless of geographical location or socioeconomic status. Over the years, we have
+                grown into a
+                trusted platform for readers of all ages, offering a diverse collection of e-books
+                and audiobooks.</p>
+
+            <h2 style="margin-top: 10px;">Who We Are</h2>
+            <p style="margin-top: 10px;">We are a team of passionate book lovers, librarians, and technologists dedicated to making knowledge
+                accessible to everyone, anytime, anywhere.</p>
+            <br>
+            <div class="big-cont">
+                <div class="card-container">
+                    <div class="content content1">
+                        <h2>Suhaila Sayed</h2>
+                        <p class="title">Cheif Librarian</p>
+                        <p>Suahila_23@gmail.com</p>
+                        <button class="button">Contact</button>
+                    </div>
+                </div>
+    
+                <div class="content card-container">
+                    <div class="content2">
+                        <h2>Mohamed Mostafa</h2>
+                        <p class="title">Head of Technology</p>
+                        <p>Mohamed$10@gmail.com</p>
+                        <button class="button">Contact</button>
+                    </div>
+                </div>
+    
+                <div class="content card-container">
+                    <div class="content3">
+                        <h2>Malak Mohy</h2>
+                        <p class="title">Content curator</p>
+                        <p>Malak_203@gmail.com</p>
+                        <button class="button">Contact</button>
+                    </div>
+                </div>
+                <div class="content card-container">
+                    <div class="content4">
+                        <h2>Youssef Nasser</h2>
+                        <p class="title">Library Manager</p>
+                        <p>Youssef_13@gmail.com</p>
+                        <button class="button">Contact</button>
+                    </div>
+                </div>
+    
+                <div class="content card-container">
+                    <div class="content5">
+                        <h2>Ahmed Tamer</h2>
+                        <p class="title">Technnical Assistant</p>
+                        <p>Youssef_13@gmail.com</p>
+                        <button class="button">Contact</button>
+                    </div>
+                </div>    
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2024 Online Library. All rights reserved.</p>
+        <p><a href="" target="_blank">Digital Book</a></p>
+
+    </footer>
 </body>
 </html>

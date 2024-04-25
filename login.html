@@ -12,20 +12,31 @@
         <img src="./images/shelves.jpg" alt="bg" class="bg-image">
         <div class="black"></div>
     </div>
-    <form>
-        <h1>Login Form</h1>
-        <div class="inputBox">
-            <div class="inputText">Email</div>
-            <input type="email" class="input email" name="email" required>
-        </div>
-        <div class="inputBox">
-            <div class="inputText">Password</div>
-            <input type="password" class="input password" name="password" required>
-        </div>
-        <div class="btns-cont">
-            <button type="submit">Login</button>
-            <a class="link" href="./register.html">Create account</a>
-        </div>
-    </form>
+    <div class="header">
+        <img src="./images/logo.png" class="logo">
+        <a class="header-tag" href="./home.html">Home</a>
+        <!-- if the user is not an Admin -->
+        <a class="header-tag my-books" href="./my-books.html">My Books</a>
+        <!-- if the user is an admin -->
+        <a class="header-tag add-book" href="./Add-new-book.html">Add Book</a>
+        <a class="header-tag" href="./about-us.html">About Us</a>
+    </div>
+    <div class="cont">
+        <form>
+            <h1>Login Form</h1>
+            <div class="inputBox">
+                <div class="inputText">Email</div>
+                <input type="email" class="input email" name="email" required>
+            </div>
+            <div class="inputBox">
+                <div class="inputText">Password</div>
+                <input type="password" class="input password" name="password" required>
+            </div>
+            <div class="btns-cont">
+                <button type="submit">Login</button>
+                <a class="link" href="./register.html">Create account</a>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

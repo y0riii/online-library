@@ -31,6 +31,9 @@
     color: orange;
     background: #ffffff83
 }
+.logout-cont {
+    font-size: 18px;
+}
 .logout {
     text-decoration: underline;
     cursor: pointer;
@@ -118,7 +121,7 @@
     overflow: auto;
 }
 .books-cont {
-    width:70%;
+    width:90%;
     margin-top:1%;
     height:97%;
     display:flex;
@@ -170,4 +173,13 @@
 }
 a {
     text-decoration: none;
+}
+.obj {
+    display: hidden !important;
+}
+
+@media screen and (max-width: 1000px) {
+    .books-cont {
+        justify-content: center;
+    }
 }

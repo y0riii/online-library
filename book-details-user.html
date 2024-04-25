@@ -10,6 +10,19 @@
     <title>Book Details</title>
 </head>
 <body>
+    <div class="header">
+        <img src="./images/logo.png" class="logo">
+        <a class="header-tag" href="./home.html">Home</a>
+        <!-- if the user is not an Admin -->
+        <a class="header-tag my-books" href="./my-books.html">My Books</a>
+        <!-- if the user is an admin -->
+        <a class="header-tag add-book" href="./add-new-book.html">Add Book</a>
+        <a class="header-tag" href="./about-us.html">About Us</a>
+        <div class="logout-cont">
+            <p class="username">Hello, </p>
+            <p class="logout">Logout</p>
+        </div>
+    </div>
     <main class="main">
         <div class="book-info">
             <div class="book-info__img">
@@ -21,7 +34,8 @@
                 </div>
 
                 <div class="buttons">
-                    <button class="button buttons__edit">Borrow the Book</button>
+                    <button class="button button__borrow">Borrow the Book</button>
+                    <button class="button button__return">Return the Book</button>
                 </div>
             </div>
             <div class="book-details">
@@ -42,5 +56,7 @@
             </div>
         </div>
     </main>
+
+    <script src="js/book-details.js"></script>
 </body>
 </html>

@@ -46,7 +46,6 @@ function searchBooks() {
                     <p class="title">${t}</p>
                     <div class="text-cont-book">
                         <p class="author">${a}</p>
-                        <p class="${s}">${s}</p>
                     </div>
                     <p class="obj" style="display:none;">${JSON.stringify(book)}</p>
                     `
@@ -94,7 +93,6 @@ function showBooks() {
         <p class="title">${t}</p>
         <div class="text-cont-book">
             <p class="author">${a}</p>
-            <p class="${s}">${s}</p>
         </div>
         <p class="obj" style="display:none;">${JSON.stringify(book)}</p>
         `
@@ -126,15 +124,21 @@ logout.addEventListener("click", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
     let name = localStorage.getItem("loggedIn-username")
+    let email = localStorage.getItem("loggedIn-email")
     if(isAdmin) myBooks.style.display = "none";
     else addBook.style.display = "none"
     username.innerHTML = `Hello, ${name}`
     let booksCount = parseInt(localStorage.getItem("book-count"))
-    for(let i=1; i<booksCount + 1; ++i) {
-        let cur = localStorage.getItem("book" + i.toString())
-        if(cur) {
-            let b = JSON.parse(cur);
-            books.push(b);
+    let my = localStorage.getItem(email+"myBooks").split(",")
+    for(let i=0; i<my.length; ++i) {
+        let cur = my[i]
+        for(let j=1; j<booksCount + 1; ++j) {
+            let curBook = localStorage.getItem("book" + cur.toString())
+            if(curBook) {
+                let b = JSON.parse(curBook);
+                books.push(b);
+                break;
+            }
         }
     }
     showBooks()
