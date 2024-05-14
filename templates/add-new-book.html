@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Add New Book</title>
+  <link rel="stylesheet" href="./styles/add-new-book.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Platypi:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet"> 
+</head>
+<body>
+  <div class="header">
+    <img src="./images/logo.png" class="logo">
+    <a class="header-tag" href="./home.html">Home</a>
+    <!-- if the user is not an Admin -->
+    <a class="header-tag my-books" href="./my-books.html">My Books</a>
+    <!-- if the user is an admin -->
+    <a class="header-tag add-book active" href="./add-new-book.html">Add Book</a>
+    <a class="header-tag" href="./about-us.html">About Us</a>
+    <div class="logout-cont">
+        <p class="username">Hello, </p>
+        <p class="logout">Logout</p>
+    </div>
+</div>
+  <div>
+  <p>Add Book Form</p></div>
+    <div class="form" name="myform">
+      <div class="inp">
+        <input class="input" id="name" type="text" placeholder="Enter book`s title" required/><br>
+        <input class="input" id="author" type="text" placeholder="Enter book`s author" required/><br>
+        <textarea id="des" placeholder="Write the book`s description" required></textarea><br>
+          <select id="book">
+            <option value="self-improvement">Self-improvement</option>
+            <option value="fiction">Fiction</option>
+            <option value="romance">Romance</option>
+            <option value="scientific">Scientific</option>
+            <option value="comedy">Comedy</option>
+            <option value="drama">Drama</option>
+          </select>
+          <br>
+          <button class="add" onclick="fun()" onsubmit="return validate()">Add Book</button>
+      </div>
+      <div class="photo"><p>Click to add book`s cover</p>
+        <input type="file" class="inpfile" name="inpfile" style="display: none;" accept="image/*">
+      </div>
+      </div>
+      <script src="./js/add-new-book.js"></script> 
+    </body>
+    </html>

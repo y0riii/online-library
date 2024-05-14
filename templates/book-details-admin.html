@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Rubik:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/book-details.css">
+    <title>Book Details</title>
+</head>
+<body>
+    <div class="header">
+        <img src="./images/logo.png" class="logo">
+        <a class="header-tag" href="./home.html">Home</a>
+        <!-- if the user is not an Admin -->
+        <a class="header-tag my-books" href="./my-books.html">My Books</a>
+        <!-- if the user is an admin -->
+        <a class="header-tag add-book" href="./add-new-book.html">Add Book</a>
+        <a class="header-tag" href="./about-us.html">About Us</a>
+        <div class="logout-cont">
+            <p class="username">Hello, </p>
+            <p class="logout">Logout</p>
+        </div>
+    </div>
+    <main class="main">
+        <div class="book-info">
+            <div class="book-info__img">
+                <!-- add book img -->
+                <img class="book-img">
+
+                <div class="book-available">
+                    <span class="book-available__state"></span>
+                </div>
+
+                <div class="buttons">
+                    <button class="button button__edit">Edit Book</button>
+                    <button class="button button__delete">Delete Book</button>
+                </div>
+            </div>
+            <div class="book-details">
+                <h1 class="book-details__book-title"></h1>
+                <span class="book-details__author book-author"></span>
+                <p class="book-details__about"></p>
+                <div class="book-details__genre-container">
+                    <span class="genre-heading">Genres</span>
+                    <!-- Add spans for all the genres of the book -->
+                </div>
+                <div class="about-author">
+                    <h3 class="about-author__heading">About The Author</h3>
+                    <span class="about-author__name book-author"></span>
+                    <p class="about-author__about"></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/book-details.js"></script>
+</body>
+</html>
