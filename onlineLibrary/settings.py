@@ -66,6 +66,10 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            
+            # 'libraries':{
+            #     'cache_bust': 'libraryStore.templatetags.cache_bust',
+            # }
         },
     },
 ]
@@ -101,6 +105,10 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+AUTH_USER_MODEL = 'libraryStore.User'
+
+AUTHENTICATION_BACKENDS = ['libraryStore.backends.EmailBackend']
 
 
 # Internationalization

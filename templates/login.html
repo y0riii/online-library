@@ -8,34 +8,28 @@
     <title>Login</title>
     <link rel="stylesheet" href="{% static 'styles/login.css' %}">
     <script src="{% static 'js/login.js' %}" defer></script>
+    <script src="{% static 'js/header.js' %}" defer></script>
 </head>
 <body>
     <div class="bg">
         <img src="{% static 'images/shelves.jpg' %}" alt="bg" class="bg-image">
         <div class="black"></div>
     </div>
-    <div class="header">
-        <img src="{% static 'images/logo.png' %}" class="logo">
-        <a class="header-tag" href="./home.html">Home</a>
-        <!-- if the user is not an Admin -->
-        <a class="header-tag my-books" href="./my-books.html">My Books</a>
-        <!-- if the user is an admin -->
-        <a class="header-tag add-book" href="./Add-new-book.html">Add Book</a>
-        <a class="header-tag" href="./about-us.html">About Us</a>
-    </div>
-
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
+    
+    {% include 'header.html' %}
 
     <div class="cont">
-        <form method="post" action="{% url 'home' %}">
+        <form method="post" action="">
             {% csrf_token %}
-            
+
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
             <h1>Login Form</h1>
             <div class="inputBox">
                 <div class="inputText">Email</div>

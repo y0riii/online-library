@@ -1,26 +1,19 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" href="./styles/home.css">
-    <script src="./js/home.js" defer></script>
+    <link rel="stylesheet" href="{% static 'styles/home.css' %}">
+    <script src="{% static 'js/header.js' %}" defer></script>
+    <script src="{% static 'js/home.js' %}" defer></script>
 </head>
 <body>
-    <div class="header">
-        <img src="./images/logo.png" class="logo">
-        <a class="header-tag active" href="./home.html">Home</a>
-        <!-- if the user is not an Admin -->
-        <a class="header-tag my-books" href="./my-books.html">My Books</a>
-        <!-- if the user is an admin -->
-        <a class="header-tag add-book" href="./add-new-book.html">Add Book</a>
-        <a class="header-tag" href="./about-us.html">About Us</a>
-        <div class="logout-cont">
-            <p class="username">Hello, </p>
-            <p class="logout">Logout</p>
-        </div>
-    </div>
+
+    {% include 'header.html' %}
+    
     <div class="search-cont">
         <input type="text" class="search-input" placeholder="Enter the book's title or author">
         <select class="search-category">
@@ -39,7 +32,21 @@
         <button type="submit" class="search-btn">Search</button>
     </div>
     <div class="cont">
-        <div class="books-cont"></div>
+        <div class="books-cont">
+            {% for book in books %}
+
+                <div class="book">
+                    <input type="hidden" data-url="{% url 'book-details' book.id %}" class="url">
+                    <img class="cover" src="{% static book.cover %}">
+                    <p class="title">{{ book.title }}</p>
+                    <div class="text-cont-book">
+                        <p class="author">{{ book.author_name }}</p>
+                        <p class="Available">{% if book.is_available %} Available {% else %} Owned {% endif %}</p>
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
     </div>
 </body>
 </html>

@@ -1,24 +1,17 @@
+{% load static %}
+
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
  <title>About Us</title>
- <link rel="stylesheet" href="./styles/about-us.css">
- <script src="./js/about-us.js" defer></script>
+ <link rel="stylesheet" href="{% static 'styles/about-us.css' %}">
+ <script src="{% static 'js/about-us.js' %}" defer></script>
+ <script src="{% static 'js/header.js' %}" defer></script>
     </head>
 <body>
-    <div class="header">
-        <img src="./images/logo.png" class="logo">
-        <a class="header-tag" href="./home.html">Home</a>
-        <!-- if the user is not an Admin -->
-        <a class="header-tag my-books" href="./my-books.html">My Books</a>
-        <!-- if the user is an admin -->
-        <a class="header-tag add-book" href="./add-new-book.html">Add Book</a>
-        <a class="header-tag active" href="./about-us.html">About Us</a>
-        <div class="logout-cont">
-            <p class="username">Hello, </p>
-            <p class="logout">Logout</p>
-        </div>
-    </div>
+    
+    {% include 'header.html' %}
+
     <section class="about-section">
         <div class="container">
             <h2 style="margin-top: 20px;">Our Mission</h2>

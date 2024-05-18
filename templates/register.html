@@ -8,23 +8,18 @@
     <title>Register</title>
     <link rel="stylesheet" href="{% static 'styles/register.css' %}">
     <script src="{% static 'js/register.js' %}" defer></script>
+    <script src="{% static 'js/header.js' %}" defer></script>
 </head>
 <body>
-    <div class="header">
-        <img src="{% static 'images/logo.png' %}" class="logo">
-        <a class="header-tag" href="./home">Home</a>
-        <!-- if the user is not an Admin -->
-        <a class="header-tag my-books" href="./my-books">My Books</a>
-        <!-- if the user is an admin -->
-        <a class="header-tag add-book" href="./Add-new-book">Add Book</a>
-        <a class="header-tag" href="./about-us">About Us</a>
-    </div>
+
+    {% include 'header.html' %}
+    
     <div class="bg">
         <img src="{% static 'images/shelves.jpg' %}" alt="bg" class="bg-image">
         <div class="black"></div>
     </div>
     <div class="cont">
-        <form method="post" action="{% url 'register' %}">
+        <form method="post" action="">
             {% csrf_token %}
             <!-- <h1>Register Form</h1>
             <div class="inputBox">

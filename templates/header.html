@@ -1,0 +1,25 @@
+{% load static %}
+
+<div class="header">
+    <img src="{% static 'images/logo.png' %}" class="logo">
+    <a class="header-tag home" href="{% url 'home' %}">Home</a>
+    <!-- if the user is not an Admin -->
+    {% if request.user.is_staff %}
+    <a class="header-tag add-book" href="{% url 'add-new-book' %}">Add Book</a>
+    {% else %}
+    <!-- if the user is an admin -->
+    <a class="header-tag my-books" href="{% url 'my-books' %}">My Books</a>
+    {% endif %}
+    <a class="header-tag about-us" href="{% url 'about-us' %}">About Us</a>
+    {% if request.user.is_authenticated %}
+    <div class="logout-cont">
+        <p class="username">Hello, {{ request.user.username }}</p>
+        <a class="logout" href="{% url 'logout' %}">Logout</a>
+    </div>
+    {% else %}
+    <div class="logout-cont">
+        
+        <a class="logout" href="{% url 'login' %}">Login</a>
+    </div>
+    {% endif %}
+</div>

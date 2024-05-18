@@ -1,26 +1,19 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" href="./styles/home.css">
-    <script src="./js/my-books.js" defer></script>
+    <link rel="stylesheet" href="{% static 'styles/home.css' %}">
+    <script src="{% static 'js/my-books.js' %}" defer></script>
+    <script src="{% static 'js/header.js' %}" defer></script>
 </head>
 <body>
-    <div class="header">
-        <img src="./images/logo.png" class="logo">
-        <a class="header-tag" href="./home.html">Home</a>
-        <!-- if the user is not an Admin -->
-        <a class="header-tag my-books active" href="./my-books.html">My Books</a>
-        <!-- if the user is an admin -->
-        <a class="header-tag add-book" href="./add-new-book.html">Add Book</a>
-        <a class="header-tag" href="./about-us.html">About Us</a>
-        <div class="logout-cont">
-            <p class="username">Hello, </p>
-            <p class="logout">Logout</p>
-        </div>
-    </div>
+    
+    {% include 'header.html' %}
+
     <div class="search-cont">
         <input type="text" class="search-input" placeholder="Enter the book's title or author">
         <select class="search-category">

@@ -35,7 +35,7 @@ inputs.forEach(input => {
 //     }
 // })
 
-document.addEventListener("DOMContentLoaded", () => {
-    if(isAdmin) myBooks.style.display = "none";
-    else addBook.style.display = "none"
-})
+// document.addEventListener("DOMContentLoaded", () => {
+//     if(isAdmin) myBooks.style.display = "none";
+//     else addBook.style.display = "none"
+// })
