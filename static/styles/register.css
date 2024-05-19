@@ -30,23 +30,14 @@ body {
     color:#fff;
     z-index: 100;
 }
-.header {
-    background: #0f005c;
-    width:100%;
-    height:10vh;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    color:#fff;
-}
-.header .header-tag {
+.header a {
     transform: translate(-50px, 0);
 }
 .logo {
     height:10vh;
     transform: translate(-30px, 0);
 }
-.header .header-tag {
+.header a {
     padding:5px;
     cursor: pointer;
     transition: .5s;
@@ -54,7 +45,7 @@ body {
     color: #fff;
     font-size: 19px;
 }
-.header .header-tag:hover {
+.header a:hover {
     scale:1.1;
     color: orange;
     background: #ffffff83
@@ -62,13 +53,7 @@ body {
 .logout-cont {
     font-size: 18px;
 }
-.username {
-    font-size: 19px;
-    margin: 0;
-    font-weight: normal;
-}
 .logout {
-    color: #fff;
     text-decoration: underline;
     cursor: pointer;
     transition: .5s;
@@ -80,7 +65,7 @@ body {
     scale:1.1;
     color: red;
 }
-.header .active {
+.active {
     scale: 1.1 !important;
     color: red !important;
 }
@@ -105,10 +90,6 @@ form {
     backdrop-filter: blur(10px);
 }
 
-form div:not(:nth-last-child(2)) {
-    width: 100%;
-}
-
 .input {
     position: relative;
     width: 100%;
@@ -118,7 +99,6 @@ form div:not(:nth-last-child(2)) {
     outline: none;
     font-size: 24px;
     border-bottom: 2px rgba(0, 0, 0, .5) solid;
-    margin-bottom: 25px;
 }
 
 form .inputText {
@@ -190,6 +170,5 @@ form .focus .inputText {
 
 .label, #admin {
     cursor: pointer;
-    margin-bottom: 25px;
 }
 

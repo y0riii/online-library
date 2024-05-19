@@ -58,7 +58,27 @@
             {% endif %}
 
             <h1>Register Form</h1>
-            {{form}}
+            <div class="inputBox">
+                <div class="inputText">Username</div>
+                {{form.username}}
+            </div>
+            <div class="inputBox">
+                <div class="inputText">Email</div>
+                {{form.email}}
+            </div>
+            <div class="inputBox">
+                <div class="inputText">Password</div>
+                {{form.password1}}
+            </div>
+            <div class="inputBox">
+                <div class="inputText">Repeat password</div>
+                {{form.password2}}
+            </div>
+            <div class="inputBox">
+                <label for="admin" class="label">
+                    {{form.is_admin}} Admin
+                </label>
+            </div>
             <div class="btns-cont">
                 <button type="submit">Register</button>
                 <a class="link" href="{% url 'login' %}">Go to login</a>

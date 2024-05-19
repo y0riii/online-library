@@ -8,7 +8,7 @@ class User(AbstractUser):
 class Book(models.Model):
     title = models.CharField(max_length=50, blank=False)
     describtion = models.CharField(max_length=800)
-    cover = models.CharField(max_length=100, default='', blank=False)
+    cover = models.ImageField(default='', blank=False, upload_to='static/book-images')
     category_options = {
         "Self-improvement": "Self-improvement",
         "Fiction": "Fiction",

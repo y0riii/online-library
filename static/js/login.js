@@ -4,8 +4,6 @@ const password = document.querySelector(".password")
 const form = document.querySelector("form")
 const username = document.querySelector(".username")
 const logout = document.querySelector(".logout")
-const myBooks = document.querySelector(".my-books")
-const addBook = document.querySelector(".add-book")
 let isAdmin = localStorage.getItem("role")
 if(isAdmin == "on") isAdmin = true;
 else isAdmin = false;

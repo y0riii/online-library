@@ -1,15 +1,15 @@
 from django import forms  
-from .models import User  
+from .models import User, Book  
 from django.contrib.auth.forms import UserCreationForm  
 from django.core.exceptions import ValidationError  
 from django.forms.fields import EmailField  
 from django.forms.forms import Form  
   
 class RegisterationForm(UserCreationForm):  
-    username = forms.CharField(label='Username', min_length=5, max_length=150, widget=forms.TextInput(attrs={'placeholder': 'Username', 'class': 'input usernameInput'}))  
-    email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'placeholder': 'Email', 'class': 'input email'}))  
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'placeholder': 'Password', 'class': 'input password'}))  
-    password2 = forms.CharField(label='Repeat Password', widget=forms.PasswordInput(attrs={'placeholder': 'Repeat Password', 'class': 'input rPassword'}))  
+    username = forms.CharField(label='Username', min_length=5, max_length=150, widget=forms.TextInput(attrs={'class': 'input usernameInput'}))  
+    email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'class': 'input email'}))  
+    password1 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class': 'input password'}))  
+    password2 = forms.CharField(label='Repeat Password', widget=forms.PasswordInput(attrs={'class': 'input rPassword'}))  
     is_admin = forms.BooleanField(label='Admin', required = False, disabled = False, widget=forms.widgets.CheckboxInput(attrs={'id': 'admin'}))
   
     def username_clean(self):  
@@ -53,3 +53,15 @@ class RegisterationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
+
+class BookForm(forms.ModelForm):
+    class Meta:
+        model = Book
+        fields = ['title', 'describtion', 'author_name', 'category', 'cover']
+        widgets = {
+            'title': forms.TextInput(attrs={'placeholder': "Enter book's title", 'required': True, 'class': 'input', 'id':'name'}),
+            'author_name': forms.TextInput(attrs={'placeholder': "Enter book's author", 'required': True, 'class': 'input', 'id':'author'}),
+            'describtion': forms.Textarea(attrs={'placeholder': "Write the book's description", 'required': True, 'id': 'des'}),
+            'category': forms.Select(choices=Book.category_options, attrs={'id':'book'}),
+            'cover': forms.FileInput(attrs={'accept': 'image/*', 'class': 'inpfile'})
+        }

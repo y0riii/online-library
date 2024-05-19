@@ -51,7 +51,6 @@ def register_page(request):
             user.username = user.username.lower()
             user.save()
             login(request, user)
-            users = User.objects.all()
             return redirect('home')
     context = {'form': form}
     return render(request, 'register.html', context)
@@ -69,12 +68,22 @@ def my_books(request):
 
 @login_required(login_url='login')
 def add_new_book(request):
-    book = Book.objects.get(id=1)
+    form = forms.BookForm()
     context = {'heading': 'Add Book Form',
                'btnName': 'Add Book',
                'coverTitle': "Click to add book's cover",
-               'status': 'add',
-               'book': book}
+               'form': form,
+               'category_options': Book.category_options
+               }
+    if request.method == 'POST':
+        form = forms.BookForm(request.POST, request.FILES)
+        context['form'] = form
+        if form.is_valid():
+            book = form.save(commit=False)
+            book.is_available = True
+            book.owner = None
+            book.save()
+            return redirect('home')
     return render(request, 'add-new-book.html', context)
 
 @login_required(login_url='login')
@@ -83,8 +92,22 @@ def edit_book(request, pk):
     context = {'heading': 'Edit Book Form',
                'btnName': 'Edit Book',
                'coverTitle': "Click to edit book's cover",
-               'status':'edit',
-               'book': book}
+               'book': book,
+               'category_options': Book.category_options}
+    if request.method == 'POST':
+        form = request.POST
+        if form.get('name'):
+            book.title = form.get('name')
+        if form.get('author'):
+            book.author_name = form.get('author')
+        if form.get('des'):
+            book.describtion = form.get('des')
+        if (form.get('book')):
+            book.category = form.get('book')
+        if (form.get('inpfile')):
+            book.cover = form.get('inpfile')
+        book.save()
+        return redirect('home')
     return render(request, 'add-new-book.html', context)
 
 
@@ -98,3 +121,24 @@ def delete_book(request, pk):
     book = Book.objects.get(id=int(pk))
     book.delete()
     return redirect('home')
+
+def borrow_book(request, pk):
+    book = Book.objects.get(id=pk)
+    if book.is_available:
+        book.is_available = False
+        book.owner = request.user.username
+        book.save()
+        return redirect('home')
+    return redirect('book-details', pk)
+
+def return_book(request, pk):
+    book = Book.objects.get(id=pk)
+    print(book.is_available)
+    if not book.is_available and book.owner == request.user.username:
+        book.is_available = True
+        book.owner = None
+        print('hi')
+        book.save()
+        print('a7a')
+        return redirect('home')
+    return redirect('book-return', pk)

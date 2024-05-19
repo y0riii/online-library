@@ -76,6 +76,9 @@ p {
   padding: 50px;
   opacity: 0.9;
 }
+.inpfile {
+  display: none;
+}
 .input {
   display: block;
   color: #eee;

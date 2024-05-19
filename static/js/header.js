@@ -10,7 +10,7 @@ headerTages.forEach((child) => {
     child.classList.remove("active");
 });
 
-if (page == "home") {
+if (page == "") {
     home.classList.add("active");
 }
 else if (page == "add-book") {
