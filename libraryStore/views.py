@@ -51,7 +51,6 @@ def register_page(request):
             user.username = user.username.lower()
             user.save()
             login(request, user)
-            users = User.objects.all()
             return redirect('home')
     context = {'form': form}
     return render(request, 'register.html', context)
@@ -69,12 +68,26 @@ def my_books(request):
 
 @login_required(login_url='login')
 def add_new_book(request):
-    book = Book.objects.get(id=1)
+    form = forms.BookForm()
     context = {'heading': 'Add Book Form',
                'btnName': 'Add Book',
                'coverTitle': "Click to add book's cover",
                'status': 'add',
-               'book': book}
+               'form': form
+               }
+    if request.method == 'POST':
+        form = forms.BookForm(request.POST, request.FILES)
+        context['form'] = form
+        if form.is_valid():
+            book = form.save(commit=False)
+            book.is_available = True
+            book.owner = None
+            book.save()
+            return redirect('home')
+        else:
+            print("a7a")
+    else:
+        print("a7ten")
     return render(request, 'add-new-book.html', context)
 
 @login_required(login_url='login')
@@ -98,3 +111,4 @@ def delete_book(request, pk):
     book = Book.objects.get(id=int(pk))
     book.delete()
     return redirect('home')
+    

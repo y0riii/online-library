@@ -34,10 +34,9 @@
     <div class="cont">
         <div class="books-cont">
             {% for book in books %}
-
                 <div class="book">
                     <input type="hidden" data-url="{% url 'book-details' book.id %}" class="url">
-                    <img class="cover" src="{% static book.cover %}">
+                    <img class="cover" src="{{ book.cover.url }}">
                     <p class="title">{{ book.title }}</p>
                     <div class="text-cont-book">
                         <p class="author">{{ book.author_name }}</p>

@@ -1,5 +1,5 @@
 from django import forms  
-from .models import User  
+from .models import User, Book  
 from django.contrib.auth.forms import UserCreationForm  
 from django.core.exceptions import ValidationError  
 from django.forms.fields import EmailField  
@@ -53,3 +53,15 @@ class RegisterationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
+
+class BookForm(forms.ModelForm):
+    class Meta:
+        model = Book
+        fields = ['title', 'describtion', 'author_name', 'category', 'cover']
+        widgets = {
+            'title': forms.TextInput(attrs={'placeholder': "Enter book's title", 'required': True, 'class': 'input', 'id':'name'}),
+            'author_name': forms.TextInput(attrs={'placeholder': "Enter book's author", 'required': True, 'class': 'input', 'id':'author'}),
+            'describtion': forms.Textarea(attrs={'placeholder': "Write the book's description", 'required': True, 'id': 'des'}),
+            'category': forms.Select(choices=Book.category_options, attrs={'id':'book'}),
+            'cover': forms.FileInput(attrs={'accept': 'image/*', 'class': 'inpfile'})
+        }

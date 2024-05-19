@@ -18,7 +18,12 @@
 
   <div>
   <p>{{ heading }}</p></div>
-    <div class="form" name="myform">
+    <form class="form" name="myform" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {% if status == "add" %}
+      {{ form }}
+      <input type="submit" class="add" name="add_book">{{ btnName }}</input>
+      {% else %}
       <div class="inp">
         <input class="input" id="name" type="text" placeholder="Enter book`s title" required 
         {% if status ==  'edit'%} value="{{ book.title }}" {% endif %}/><br>
@@ -33,12 +38,13 @@
             {% endfor %}
           </select>
           <br>
-          <button class="add" name="add_book">{{ btnName }}</button>
+          <input type="submit" class="add" name="add_book">{{ btnName }}</input>
       </div>
       <div class="photo"><p>{{ coverTitle }}</p>
         <input type="file" class="inpfile" name="inpfile" style="display: none;" accept="image/*">
       </div>
-      </div>
+      {% endif %}
+      </form>
       <script src="{% static 'js/add-new-book.js' %}"></script>
     </body>
     </html>

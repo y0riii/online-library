@@ -2,9 +2,9 @@
 // var authorInput = document.getElementById("author");
 // var descriptionInput = document.getElementById("des");
 // var categoryInput = document.getElementById("book");
-// var imgInput = document.querySelector(".inpfile")
+const imgInput = document.querySelector(".inpfile")
 // let img = null;
-// const photo = document.querySelector(".photo")
+const photo = document.querySelector(".photo")
 // const username = document.querySelector(".username")
 // const logout = document.querySelector(".logout")
 // const myBooks = document.querySelector(".my-books")
@@ -12,6 +12,7 @@
 // let isAdmin = localStorage.getItem("role")
 // if(isAdmin == "on") isAdmin = true;
 // else isAdmin = false;
+
 
 // function fun() {
 //   let title = titleInput.value;
@@ -58,10 +59,9 @@
 //   s = "images/" + s;
 //   img = s;
 // });
-
-// photo.addEventListener("click", () => {
-//   imgInput.click()
-// })
+photo.addEventListener("click", () => {
+  imgInput.click()
+})
 
 // logout.addEventListener("click", () => {
 //   localStorage.removeItem("loggedIn-email")

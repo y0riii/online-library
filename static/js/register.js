@@ -7,11 +7,7 @@ const password = document.querySelector(".password")
 const rPassword = document.querySelector(".rPassword")
 const username = document.querySelector(".username")
 const logout = document.querySelector(".logout")
-const myBooks = document.querySelector(".my-books")
-const addBook = document.querySelector(".add-book")
-let isAdmin = localStorage.getItem("role")
-if(isAdmin == "on") isAdmin = true;
-else isAdmin = false;
+let isAdmin = false;
 
 inputs.forEach(input => {
     input.addEventListener("focus", () => {
@@ -63,7 +59,7 @@ inputs.forEach(input => {
 //     } else alert("passwords don't match.")
 // })
 
-document.addEventListener("DOMContentLoaded", () => {
-    if(isAdmin) myBooks.style.display = "none";
-    else addBook.style.display = "none"
-})
+// document.addEventListener("DOMContentLoaded", () => {
+//     if(isAdmin) myBooks.style.display = "none";
+//     else addBook.style.display = "none"
+// })
