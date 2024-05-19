@@ -65,3 +65,4 @@ class BookForm(forms.ModelForm):
             'category': forms.Select(choices=Book.category_options, attrs={'id':'book'}),
             'cover': forms.FileInput(attrs={'accept': 'image/*', 'class': 'inpfile'})
         }
+

@@ -4,7 +4,7 @@
 // var categoryInput = document.getElementById("book");
 const imgInput = document.querySelector(".inpfile")
 // let img = null;
-const photo = document.querySelector(".photo")
+const photo = imgInput.parentElement
 // const username = document.querySelector(".username")
 // const logout = document.querySelector(".logout")
 // const myBooks = document.querySelector(".my-books")

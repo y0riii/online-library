@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="{% static 'styles/home.css' %}">
+    <script>
+        var name = "{{ name }}"
+    </script>
     <script src="{% static 'js/header.js' %}" defer></script>
     <script src="{% static 'js/home.js' %}" defer></script>
 </head>
@@ -15,17 +18,17 @@
     {% include 'header.html' %}
     
     <div class="search-cont">
-        <input type="text" class="search-input" placeholder="Enter the book's title or author">
-        <select class="search-category">
+        <input type="text" name="title" class="search-input" placeholder="Enter the book's title or author">
+        <select class="search-category" name="category">
             <option value="all">All</option>
-            <option value="self-improvement">Self-improvement</option>
-            <option value="fiction">Fiction</option>
-            <option value="romance">Romance</option>
-            <option value="scientific">Scientific</option>
-            <option value="comedy">Comedy</option>
-            <option value="drama">Drama</option>
+            <option value="Self-improvement">Self-improvement</option>
+            <option value="Fiction">Fiction</option>
+            <option value="Romance">Romance</option>
+            <option value="Scientific">Scientific</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Drama">Drama</option>
         </select>
-        <div class="checkbox-cont">
+        <div class="checkbox-cont" name="available">
             <input class="ava" type="checkbox"></input>
             <p>Show Available Only</p>
         </div>
