@@ -196,7 +196,7 @@ def borrow_book(request, pk):
     book = Book.objects.get(id=pk)
     if book.is_available:
         book.is_available = False
-        book.owner = request.user.username
+        book.owner = request.user
         book.save()
         return redirect('home')
     return redirect('book-details', pk)
@@ -204,7 +204,7 @@ def borrow_book(request, pk):
 def return_book(request, pk):
     book = Book.objects.get(id=pk)
     print(book.is_available)
-    if not book.is_available and book.owner == request.user.username:
+    if not book.is_available and book.owner == request.user:
         book.is_available = True
         book.owner = None
         print('hi')
