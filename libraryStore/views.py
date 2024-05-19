@@ -4,17 +4,18 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.template import loader
 from django.http import HttpResponse
+from django.http import JsonResponse
 from .models import User, Book
 from . import forms
 from django.contrib.auth import get_user_model
+import json
 
 User = get_user_model()
-
 
 # Create your views here.
 @login_required(login_url='login')
 def home(request):
-    context = {'books': Book.objects.all()}
+    context = {'books': Book.objects.all(), 'name': request.user.username}
     return render(request, 'home.html', context)
 
 def login_page(request):
@@ -64,10 +65,14 @@ def about_us(request):
 
 @login_required(login_url='login')
 def my_books(request):
+    if request.user.is_staff:
+        return redirect("/")
     return render(request, 'my-books.html')
 
 @login_required(login_url='login')
 def add_new_book(request):
+    if not request.user.is_staff:
+        return redirect("/")
     form = forms.BookForm()
     context = {'heading': 'Add Book Form',
                'btnName': 'Add Book',
@@ -75,6 +80,15 @@ def add_new_book(request):
                'form': form,
                'category_options': Book.category_options
                }
+    if request.method == 'POST':
+        form = forms.BookForm(request.POST, request.FILES)
+        context['form'] = form
+        if form.is_valid():
+            book = form.save(commit=False)
+            book.is_available = True
+            book.owner = None
+            book.save()
+            return redirect('home')
     if request.method == 'POST':
         form = forms.BookForm(request.POST, request.FILES)
         context['form'] = form
@@ -121,6 +135,62 @@ def delete_book(request, pk):
     book = Book.objects.get(id=int(pk))
     book.delete()
     return redirect('home')
+
+def searchBooks(request):
+    if request.method == "POST":
+        data = json.loads(request.body.decode('utf-8'))
+        books = Book.objects.all()
+        title = data['title']
+        category = data['category']
+        ava = data['available']
+        if title != '':
+            books = books.filter(title__icontains=title)
+        if category != 'all':
+            books = books.filter(category=category)
+        if ava == 'true':
+            books = books.filter(is_available=True)
+        book_list = []
+        for book in books:
+            book_list.append({
+                'id': book.id,
+                'title': book.title,
+                'author_name': book.author_name,
+                'category': book.category,
+                'available': book.is_available,
+                'cover': book.cover.url,
+                'owner':book.owner,
+            })
+        book_list = json.dumps({'books': book_list})
+        return JsonResponse(book_list, safe=False)
+
+def searchMyBooks(request):
+    if request.method == "POST":
+        data = json.loads(request.body.decode('utf-8'))
+        books = Book.objects.all()
+        title = data['title']
+        category = data['category']
+        ava = data['available']
+        if request.user:
+            books = books.filter(owner=request.user)
+        if title != '':
+            books = books.filter(title__icontains=title)
+        if category != 'all':
+            books = books.filter(category=category)
+        if ava == 'true':
+            books = books.filter(is_available=True)
+        book_list = []
+        for book in books:
+            book_list.append({
+                'id': book.id,
+                'title': book.title,
+                'author_name': book.author_name,
+                'category': book.category,
+                'available': book.is_available,
+                'cover': book.cover.url,
+                'owner':book.owner,
+            })
+        book_list = json.dumps({'books': book_list})
+        return JsonResponse(book_list, safe=False)
 
 def borrow_book(request, pk):
     book = Book.objects.get(id=pk)

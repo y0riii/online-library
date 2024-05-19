@@ -1,5 +1,6 @@
 from django import forms  
 from .models import User, Book  
+from .models import User, Book  
 from django.contrib.auth.forms import UserCreationForm  
 from django.core.exceptions import ValidationError  
 from django.forms.fields import EmailField  
