@@ -9,13 +9,35 @@ from .models import User, Book
 from . import forms
 from django.contrib.auth import get_user_model
 import json
+from django.db.models import Q
 
 User = get_user_model()
 
 # Create your views here.
 @login_required(login_url='login')
 def home(request):
-    context = {'books': Book.objects.all(), 'name': request.user.username}
+    books = Book.objects.all()
+    book_list = []
+    for i in range(len(books)):
+        book = books[i]
+        if len(book.title) > 14:
+            book.title = book.title[:12] + ".."
+        if len(book.author_name) > 14:
+            book.author_name = book.author_name[:12] + ".."
+        own = ""
+        if book.owner != None:
+            own = book.owner.username
+        book_list.append({
+                'id': book.id,
+                'title': book.title,
+                'author_name': book.author_name,
+                'category': book.category,
+                'is_available': book.is_available,
+                'cover': book.cover.url,
+                'owner': own,
+            })
+    
+    context = {'books': book_list, 'name': request.user.username}
     return render(request, 'home.html', context)
 
 def login_page(request):
@@ -67,7 +89,24 @@ def about_us(request):
 def my_books(request):
     if request.user.is_staff:
         return redirect("/")
-    return render(request, 'my-books.html')
+    books = Book.objects.all()
+    book_list = []
+    for book in books:
+        if book.owner == request.user:
+            if len(book.title) > 14:
+                book.title = book.title[:12] + ".."
+            if len(book.author_name) > 14:
+                book.author_name = book.author_name[:12] + ".."
+            book_list.append({
+                'id': book.id,
+                'title': book.title,
+                'author_name': book.author_name,
+                'category': book.category,
+                'is_available': book.is_available,
+                'cover': book.cover.url,
+            })
+    context = {'books': book_list}
+    return render(request, 'my-books.html', context)
 
 @login_required(login_url='login')
 def add_new_book(request):
@@ -80,15 +119,6 @@ def add_new_book(request):
                'form': form,
                'category_options': Book.category_options
                }
-    if request.method == 'POST':
-        form = forms.BookForm(request.POST, request.FILES)
-        context['form'] = form
-        if form.is_valid():
-            book = form.save(commit=False)
-            book.is_available = True
-            book.owner = None
-            book.save()
-            return redirect('home')
     if request.method == 'POST':
         form = forms.BookForm(request.POST, request.FILES)
         context['form'] = form
@@ -118,8 +148,9 @@ def edit_book(request, pk):
             book.describtion = form.get('des')
         if (form.get('book')):
             book.category = form.get('book')
-        if (form.get('inpfile')):
-            book.cover = form.get('inpfile')
+        if (request.FILES.get('inpfile')):
+            book.cover = request.FILES.get('inpfile')
+        print(book.cover)
         book.save()
         return redirect('home')
     return render(request, 'add-new-book.html', context)
@@ -128,7 +159,20 @@ def edit_book(request, pk):
 @login_required(login_url='login')
 def book_details(request, pk):
     book = Book.objects.get(id=int(pk))
-    context = {'book': book}
+    own = ""
+    if book.owner != None:
+        own = book.owner.username
+    b = {
+        'id': book.id,
+        'title': book.title,
+        'author_name': book.author_name,
+        'category': book.category,
+        'is_available': book.is_available,
+        'cover': book.cover.url,
+        'describtion': book.describtion,
+        'owner': own,
+    }
+    context = {'book': b}
     return render(request, 'book-details.html', context)
 
 def delete_book(request, pk):
@@ -143,14 +187,19 @@ def searchBooks(request):
         title = data['title']
         category = data['category']
         ava = data['available']
+        q_objects = Q()
         if title != '':
-            books = books.filter(title__icontains=title)
+            q_objects = Q(title__icontains=title) | Q(author_name__icontains=title)
         if category != 'all':
-            books = books.filter(category=category)
-        if ava == 'true':
-            books = books.filter(is_available=True)
+            q_objects &= Q(category=category)
+        if ava:
+            q_objects &= Q(is_available=True)
+        books = Book.objects.filter(q_objects)
         book_list = []
         for book in books:
+            own = ""
+            if book.owner != None:
+                own = book.owner.username
             book_list.append({
                 'id': book.id,
                 'title': book.title,
@@ -158,7 +207,7 @@ def searchBooks(request):
                 'category': book.category,
                 'available': book.is_available,
                 'cover': book.cover.url,
-                'owner':book.owner,
+                'owner':own,
             })
         book_list = json.dumps({'books': book_list})
         return JsonResponse(book_list, safe=False)
@@ -169,15 +218,14 @@ def searchMyBooks(request):
         books = Book.objects.all()
         title = data['title']
         category = data['category']
-        ava = data['available']
+        q_objects = Q()
         if request.user:
-            books = books.filter(owner=request.user)
+            q_objects = Q(owner=request.user)
         if title != '':
-            books = books.filter(title__icontains=title)
+            q_objects &= Q(title__icontains=title) | Q(author_name__icontains=title)
         if category != 'all':
-            books = books.filter(category=category)
-        if ava == 'true':
-            books = books.filter(is_available=True)
+            q_objects &= Q(category=category)
+        books = Book.objects.filter(q_objects)
         book_list = []
         for book in books:
             book_list.append({
@@ -187,7 +235,6 @@ def searchMyBooks(request):
                 'category': book.category,
                 'available': book.is_available,
                 'cover': book.cover.url,
-                'owner':book.owner,
             })
         book_list = json.dumps({'books': book_list})
         return JsonResponse(book_list, safe=False)
@@ -203,12 +250,8 @@ def borrow_book(request, pk):
 
 def return_book(request, pk):
     book = Book.objects.get(id=pk)
-    print(book.is_available)
     if not book.is_available and book.owner == request.user:
         book.is_available = True
         book.owner = None
-        print('hi')
         book.save()
-        print('a7a')
-        return redirect('home')
-    return redirect('book-return', pk)
+    return redirect('home')

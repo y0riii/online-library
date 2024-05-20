@@ -27,7 +27,7 @@ function searchBooks(books) {
         let book = books[i]
         if(Boolean(book.available)) s = "Available"
         else {
-            if(book.owner == "{{ request.user.username }}") s = "Owned"
+            if(book.owner == name) s = "Owned"
             else s = "Unavailable";
         }
         let div = document.createElement("div")

@@ -20,25 +20,33 @@
         <div class="book-info">
             <div class="book-info__img">
                 <!-- add book img -->
-                <img class="book-img" src="{{ book.cover.url }}">
+                <img class="book-img" src="{{ book.cover }}">
 
                 <div class="book-available">
                     <span class="book-available__state">
                         {% if book.is_available %}
                         Available
-                        {% else %}
+                        {% elif book.owner == request.user.username %}
                         Owned
+                        {% else %}
+                        Unavailable
                         {% endif %}
                     </span>
                 </div>
 
                 <div class="buttons">
                     {% if request.user.is_staff %}
-                    <a class="button button__edit" href="{% url 'edit-book' book.id%}">Edit Book</a>
-                    <a class="button button__delete" href="{% url 'delete-book' book.id %}">Delete Book</a>   
+                        <a class="button button__edit" href="{% url 'edit-book' book.id%}">Edit Book</a>
+                        <a class="button button__delete" href="{% url 'delete-book' book.id %}">Delete Book</a>   
                     {% else %}
-                    <a class="button button__borrow" href="{% url 'borrow-book' book.id %}">Borrow the Book</a>
-                    <a class="button button__return" href="{% url 'return-book' book.id %}">Return the Book</a>
+                        {% if book.owner != request.user.username and book.is_available == True %}
+                            <a class="button button__borrow" href="{% url 'borrow-book' book.id %}">Borrow the Book</a>
+                        {% elif book.owner == request.user.username %}
+                            <a class="button button__return" href="{% url 'return-book' book.id %}">Return the Book</a>
+                        {% endif %}
+                        {% if book.owner != request.user.username and book.is_available == False %}
+                            <p class="err"> The book is currently unavailable. </p>
+                        {% endif %}
                     {% endif %}
                 </div>
             </div>

@@ -28,7 +28,20 @@
         <button type="submit" class="search-btn">Search</button>
     </div>
     <div class="cont">
-        <div class="books-cont"></div>
+        <div class="books-cont">
+            {% for book in books %}
+                <div class="book">
+                    <input type="hidden" data-url="{% url 'book-details' book.id %}" class="url">
+                    <img class="cover" src="{{ book.cover }}">
+                    <p class="title">{{ book.title }}</p>
+                    <div class="text-cont-book">
+                        <p class="author">{{ book.author_name }}</p>
+                        <p class="Owned">Owned</p>
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
     </div>
 </body>
 </html>

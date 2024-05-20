@@ -8,7 +8,7 @@
     <title>Home</title>
     <link rel="stylesheet" href="{% static 'styles/home.css' %}">
     <script>
-        var name = "{{ name }}"
+        let name = "{{ name }}";
     </script>
     <script src="{% static 'js/header.js' %}" defer></script>
     <script src="{% static 'js/home.js' %}" defer></script>
@@ -39,11 +39,11 @@
             {% for book in books %}
                 <div class="book">
                     <input type="hidden" data-url="{% url 'book-details' book.id %}" class="url">
-                    <img class="cover" src="{{ book.cover.url }}">
+                    <img class="cover" src="{{ book.cover }}">
                     <p class="title">{{ book.title }}</p>
                     <div class="text-cont-book">
                         <p class="author">{{ book.author_name }}</p>
-                        <p class="Available">{% if book.is_available %} Available {% else %} Owned {% endif %}</p>
+                        <p class="{% if book.is_available %} Available {% elif book.owner == request.user.username %} Owned {% else %} Unavailable {% endif %}">{% if book.is_available %} Available {% elif book.owner == request.user.username %} Owned {% else %} Unavailable {% endif %}</p>
                     </div>
                 </div>
 

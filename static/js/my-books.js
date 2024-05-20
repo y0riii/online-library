@@ -5,7 +5,6 @@
 const booksCont = document.querySelector(".books-cont")
 const searchInput = document.querySelector(".search-input")
 const searchCategory = document.querySelector(".search-category")
-const searchAva = document.querySelector(".ava")
 const searchBtn = document.querySelector(".search-btn")
 // let bs;
 // let books = []
@@ -20,16 +19,9 @@ const searchBtn = document.querySelector(".search-btn")
 function searchBooks(books) {
     let title = searchInput.value;
     let category = searchCategory.value;
-    let ava = searchAva.checked;
     booksCont.innerHTML = ""
     for(let i=0; i<books.length; ++i) {
-        let s;
         let book = books[i]
-        if(Boolean(book.available)) s = "Available"
-        else {
-            if(book.owner == "{{ request.user.username }}") s = "Owned"
-            else s = "Unavailable";
-        }
         let div = document.createElement("div")
         div.classList.add("book")
         div.setAttribute("key", i)
@@ -47,6 +39,7 @@ function searchBooks(books) {
         <p class="title">${t}</p>
         <div class="text-cont-book">
             <p class="author">${a}</p>
+            <p class="Owned">Owned</p>
         </div>
         `
         booksCont.appendChild(div)
@@ -154,7 +147,6 @@ searchBtn.addEventListener("click", () => {
         body: JSON.stringify({  // Serialize the data into a JSON string
             title: searchInput.value,
             category: searchCategory.value,
-            available: searchAva.checked
         })
     })
     .then(response => response.json())

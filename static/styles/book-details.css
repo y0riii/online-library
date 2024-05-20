@@ -288,7 +288,11 @@ background-color: rgb(36, 36, 36);
     width: 100%;
 }
 
-
+.err {
+    font-size: 22px;
+    margin-top:20px;
+    color: red;
+}
 
 
 @media screen and (min-width: 1400px) {
