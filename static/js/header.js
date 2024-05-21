@@ -3,6 +3,7 @@ const myBooks = document.querySelector(".my-books")
 const addBook = document.querySelector(".add-book")
 const home = document.querySelector(".home")
 const aboutUs = document.querySelector(".about-us")
+const message = document.querySelector(".m")
 
 const page = window.location.href.split('/')[3];
 
@@ -22,3 +23,8 @@ else if (page == "my-books") {
 else if (page == "about-us") {
     aboutUs.classList.add("active");
 }
+
+if (message)
+    setTimeout(() => {
+        message.style.display = "none";
+    }, 3000);

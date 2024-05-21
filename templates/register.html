@@ -13,68 +13,63 @@
 <body>
 
     {% include 'header.html' %}
-    
-    <div class="bg">
-        <img src="{% static 'images/shelves.jpg' %}" alt="bg" class="bg-image">
-        <div class="black"></div>
-    </div>
     <div class="cont">
         <form method="post" action="">
             {% csrf_token %}
-            <!-- <h1>Register Form</h1>
-            <div class="inputBox">
-                <div class="inputText">Username</div>
-                <input type="text" class="input usernameInput" name="username" required>
-            </div>
-            <div class="inputBox">
-                <div class="inputText">Email</div>
-                <input type="email" class="input email" name="email" required>
-            </div>
-            <div class="inputBox">
-                <div class="inputText">Password</div>
-                <input type="password" class="input password" name="password" required>
-            </div>
-            <div class="inputBox">
-                <div class="inputText">Repeat password</div>
-                <input type="password" class="input rPassword" name="rPassword" required>
-            </div>
-            <div class="inputBox">
-                <label for="admin" class="label">
-                    <input type="checkbox" id="admin" name="admin"> Admin
-                </label>
-            </div>
-            <div class="btns-cont">
-                <button type="submit">Register</button>
-                <a class="link" href="{% url 'login' %}">Go to login</a>
-            </div> -->
-
-
-            {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %}
 
             <h1>Register Form</h1>
+            {% if form.username.errors %}
+                <div class="err_list">
+                {% for error in form.username.errors %}
+                    <span class="form_err">{{ error }}</span>
+                {% endfor %}
+                </div>
+            {% endif %}
             <div class="inputBox">
                 <div class="inputText">Username</div>
                 {{form.username}}
             </div>
+            {% if form.email.errors %}
+                <div class="err_list">
+                {% for error in form.email.errors %}
+                    <span class="form_err">{{ error }}</span>
+                {% endfor %}
+                </div>
+            {% endif %}
             <div class="inputBox">
                 <div class="inputText">Email</div>
                 {{form.email}}
             </div>
+            {% if form.password1.errors %}
+                <div class="err_list">
+                {% for error in form.password1.errors %}
+                    <span class="form_err">{{ error }}</span>
+                {% endfor %}
+                </div>
+            {% endif %}
             <div class="inputBox">
                 <div class="inputText">Password</div>
                 {{form.password1}}
             </div>
+            {% if form.password2.errors %}
+                <div class="err_list">
+                {% for error in form.password2.errors %}
+                    <span class="form_err">{{ error }}</span>
+                {% endfor %}
+                </div>
+            {% endif %}
             <div class="inputBox">
                 <div class="inputText">Repeat password</div>
                 {{form.password2}}
             </div>
-            <div class="inputBox">
+            {% if form.is_admin.errors %}
+                <div class="err_list">
+                {% for error in form.is_admin.errors %}
+                    <span class="form_err">{{ error }}</span>
+                {% endfor %}
+                </div>
+            {% endif %}
+            <div class="inputBox check_admin">
                 <label for="admin" class="label">
                     {{form.is_admin}} Admin
                 </label>

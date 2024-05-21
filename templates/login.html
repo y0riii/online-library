@@ -18,17 +18,19 @@
     
     {% include 'header.html' %}
 
+    {% if messages %}
+    <ul class="message">
+        {% for message in messages %}
+        <li class="m failure-message">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
     <div class="cont">
         <form method="post" action="">
             {% csrf_token %}
 
-            {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %}
+            
 
             <h1>Login Form</h1>
             <div class="inputBox">

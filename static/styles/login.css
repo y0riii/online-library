@@ -188,3 +188,24 @@ form .focus .inputText {
 .btns-cont button:hover {
     scale:1.1;
 }
+
+.success-message, .failure-message {
+    font-size: 1.5rem;
+    display: inline-block;
+    padding: 1.5rem 3rem;
+    position: absolute;
+    z-index: 999;
+    top: 5rem;
+    border-radius: 1.5rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+    transition: all ease-in-out .5s;
+}
+
+.success-message {
+    background-color: rgb(37, 104, 16);
+}
+
+.failure-message {
+    background-color: rgb(147, 38, 38);
+}

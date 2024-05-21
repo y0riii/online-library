@@ -50,7 +50,7 @@ def login_page(request):
         try:
             user = User.objects.get(email=email)
         except:
-            messages.error(request, 'user not found')
+            messages.error(request, 'Email is not correct')
             return render(request, 'login.html')
         
         user = authenticate(request, username=email, password=password)
@@ -59,7 +59,7 @@ def login_page(request):
             login(request, user)
             return redirect('home')
         else:
-            messages.error(request, 'something went wrong')
+            messages.error(request, 'Password is not correct')
     
     return render(request, 'login.html')
     
