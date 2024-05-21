@@ -295,6 +295,44 @@ background-color: rgb(36, 36, 36);
     color: red;
 }
 
+.confirm-cont {
+    font-size: 2.5rem;
+    color: #ffffff;
+    background-color: rgb(10, 8, 37);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2rem 2 rem;
+    border-radius: 3rem;
+}
+
+.confirm-message {
+    margin-bottom: 7rem;
+}
+
+.confirm-cont .buttons {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.confirm-yes, .confirm-no {
+    background-color: rgb(142, 135, 135);
+    padding: 1rem 2.5rem;
+    border-radius: 1.5rem;
+    cursor: pointer;
+}
+
+.confirm-yes {
+    background-color: rgb(129, 9, 9);
+}
+
+.confirm-no {
+    background-color: rgb(142, 135, 135);
+}
+
 
 @media screen and (min-width: 1400px) {
     .book-details {

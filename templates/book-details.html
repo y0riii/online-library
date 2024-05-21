@@ -35,9 +35,10 @@
                 </div>
 
                 <div class="buttons">
+                    <input type="hidden" data-url="{% url 'delete-book' book.id %}" class="delete-url">
                     {% if request.user.is_staff %}
                         <a class="button button__edit" href="{% url 'edit-book' book.id%}">Edit Book</a>
-                        <a class="button button__delete" href="{% url 'delete-book' book.id %}">Delete Book</a>   
+                        <a class="button button__delete">Delete Book</a>   
                     {% else %}
                         {% if book.owner != request.user.username and book.is_available == True %}
                             <a class="button button__borrow" href="{% url 'borrow-book' book.id %}">Borrow the Book</a>

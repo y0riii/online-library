@@ -9,7 +9,7 @@
 // let genreContainer = document.querySelector(".book-details__genre-container");
 // let aboutAuthor = document.querySelector(".about-author__about")
 
-// const deleteBtn = document.querySelector(".button__delete");
+const deleteBtn = document.querySelector(".button__delete");
 // const editBtn = document.querySelector(".button__edit");
 // const borrowBtn = document.querySelector(".button__borrow");
 // const returnBtn = document.querySelector(".button__return");
@@ -37,6 +37,11 @@
 //                     <div class="photo"><p>Click to add book's cover</p>
 //                     <input type="file" accept="image/*" name="inpfile">
 //                     </div>`
+const confirmFormHTML = `<p class="confirm-message">Are you sure you want to delete this book?</p>
+                        <div class="buttons">
+                            <a class="confirm-yes">Yes</a>
+                            <a class="confirm-no">No</a>
+                        </div>`
 
 // let curBook = JSON.parse(localStorage.getItem("chosenBook"));
 
@@ -287,3 +292,31 @@
 //     else addBook.style.display = "none"
 //     username.innerHTML = `Hello, ${name}`
 // })
+
+let deleteConfirmed, deleteRefused;
+
+deleteBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  freeze(deleteBtn);
+  let form = document.createElement('div');
+  form.classList.add("confirm-cont");
+  form.innerHTML = confirmFormHTML;
+  document.body.appendChild(form);
+
+  deleteConfirmed = document.querySelector(".confirm-yes");
+  deleteRefused = document.querySelector(".confirm-no");
+
+  deleteConfirmed.addEventListener('click', (e) => {
+    e.preventDefault();
+    let url = document.querySelector(".delete-url").getAttribute("data-url");
+    window.location.href = url;
+    document.body.removeChild(form);
+  });
+  
+  
+  deleteRefused.addEventListener('click', (e) => {
+    e.preventDefault();
+    let form = document.querySelector(".confirm-cont");
+    document.body.removeChild(form);
+  });
+});
