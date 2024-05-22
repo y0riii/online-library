@@ -297,11 +297,13 @@ let deleteConfirmed, deleteRefused;
 
 deleteBtn.addEventListener('click', (e) => {
   e.preventDefault();
-  freeze(deleteBtn);
-  let form = document.createElement('div');
-  form.classList.add("confirm-cont");
-  form.innerHTML = confirmFormHTML;
-  document.body.appendChild(form);
+  
+  if (!document.querySelector(".confirm-cont")) {
+    let form = document.createElement('div');
+    form.classList.add("confirm-cont");
+    form.innerHTML = confirmFormHTML;
+    document.body.appendChild(form);
+  }
 
   deleteConfirmed = document.querySelector(".confirm-yes");
   deleteRefused = document.querySelector(".confirm-no");
