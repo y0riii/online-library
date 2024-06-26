@@ -5,6 +5,7 @@
 const imgInput = document.querySelector(".inpfile")
 // let img = null;
 const photo = imgInput.parentElement
+const cover = document.querySelector(".cover")
 // const username = document.querySelector(".username")
 // const logout = document.querySelector(".logout")
 // const myBooks = document.querySelector(".my-books")
@@ -52,13 +53,17 @@ const photo = imgInput.parentElement
 
 // // ../images/name
 
-// imgInput.addEventListener('change', function(event) {
-//   let path = imgInput.value
-//   let lastIndex = path.lastIndexOf("\\");
-//   let s = path.substring(lastIndex + 1)
-//   s = "images/" + s;
-//   img = s;
-// });
+imgInput.addEventListener('change', function(event) {
+  const file = event.target.files[0];
+  if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+          cover.src = e.target.result;
+          cover.style.display = 'flex';
+      };
+      reader.readAsDataURL(file);
+  }
+});
 photo.addEventListener("click", () => {
   imgInput.click()
 })
