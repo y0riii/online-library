@@ -39,22 +39,27 @@
         <br>
         <textarea name="des" id="des" placeholder="Write the book`s description" required>{% if book %}{{ book.describtion }}{% endif %}</textarea>
         <br>
-          <select name="book" id="book">
-            {% for cat in category_options %}
+        <select name="book" id="book">
+          {% for cat in category_options %}
 
-            <option value="{{cat}}" {% if book and cat == book.category %} selected {% endif %}>{{cat}}</option>
+          <option value="{{cat}}" {% if book and cat == book.category %} selected {% endif %}>{{cat}}</option>
 
-            {% endfor %}
-          </select>
-          <br>
-          {% endif %}
-          <input type="submit" class="add" name="add_book" value="{{ btnName }}"></input>
+          {% endfor %}
+        </select>
+        <br>
+        {% endif %}
+        <input type="submit" class="add" name="add_book" value="{{ btnName }}"></input>
       </div>
       <div class="photo"><p>{{ coverTitle }}</p>
         {% if not book %}
         {{ form.cover }}
         {% else %}
         <input type="file" class="inpfile" name="inpfile" accept="image/*">
+        {% endif %}
+        {% if not book %}
+        <img class="cover" style="display:none;">
+        {% else %}
+        <img class="cover" src="{{book.cover.url}}" style="display:flex;">
         {% endif %}
       </div>
       </form>
